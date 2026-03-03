@@ -31,15 +31,51 @@ window.addEventListener('click' , function(event) {
 
         counter.innerText = ++counter.innerText
         
+        //   Если клик был в корзине, пересчитываем цену
+    if (event.target.closest('.cart-wrapper')) {
+        calcCartPrice();
     }
+
+
+    }
+
 
     // Проверяем является ли элемент по которому был совершен клик кнопкой plus
 
     if (event.target.dataset.action === 'minus') {
 
+
+
+
+
         if (parseInt(counter.innerText) > 1) {
             counter.innerText = --counter.innerText;
+
+            
+        } else if (event.target.closest('.cart-wrapper') && parseInt(counter.innerText) === 1) {
+                 // Проверка на товар который находится в корзине
+
+            
+            // Удаляем товар из корзины
+            event.target.closest('.cart-item').remove();
+
+            // Это функция отображающее статуса корзины Пустая / Полная
+            toggleCartStatus()
+
+            // Пересчет общей стоимости
+            calcCartPrice()
+
         }
+
+
+        // Проверяем клик на + или - внутри корзины
+
+        if (event.target.hasAttribute('data-action') && event.target.closest(".cart-wrapper")) {
+
+            calcCartPrice()
+
+        }
+
     }
 
 })

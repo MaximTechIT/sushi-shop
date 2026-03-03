@@ -10,6 +10,7 @@ window.addEventListener('click' , function(event) {
 
     if (event.target.hasAttribute('data-cart')) {
 
+		
 
         // НАходии карточку с товаром , внутри который был совершен клик
 
@@ -81,8 +82,19 @@ window.addEventListener('click' , function(event) {
 
 		}
 
+	// Сбрасываем счетчик добавленного товара на '1'
+	card.querySelector('[data-counter]').innerText = '1'
+
+
+	// Это функция отображающее статуса корзины Пустая / Полная
+	toggleCartStatus()
+
+	calcCartPrice()
 
     }
+
+	
+	
 
 
 
